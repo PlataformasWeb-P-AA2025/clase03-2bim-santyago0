@@ -1,0 +1,29 @@
+<h2>Listado de Estudiantes</h3>
+
+<h3>Número de estudiantes {{ numero_estudiantes }}</h3>
+
+{% for e in estudiantes %}
+
+  {{e}}
+  <br/>
+  <b>{{e.nombre}}</b> {{e.apellido}} {{e.cedula}}
+  <br/>
+  <ul>
+  {% for numero in e.mis_numeros_telefonicos.all %}
+      <li>
+          Número telefónico {{numero.telefono}} {{ numero.estudiante.apellido }}<br/>
+      </li>
+  {% endfor %}
+  </ul>
+  <br/>
+{% endfor %}
+
+<hr>
+
+<ul>
+
+{% for e in mis_numeros_telefonicos %}
+  <li>{{ e }} </li>
+{% endfor %}
+
+</ul>

@@ -1,0 +1,12 @@
+
+<h3>Número de estudiantes {{ numero_estudiantes }}</h3>
+
+<ul>
+ {% for e in estudiantes %}
+
+  <li>
+    {{ e }} - [<a href="{% url 'obtener_estudiante' e.id %}">ver</a>]
+  </li>
+
+{% endfor %}
+</ul>

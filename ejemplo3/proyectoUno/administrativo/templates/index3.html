@@ -1,0 +1,36 @@
+
+<h3>Número de estudiantes {{ numero_estudiantes }}</h3>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Cédula</th>
+    <th>Suma Cédula</th>
+    <th>Lista Telefónos</th>
+    <th>Opciones</th>
+  </tr>
+
+ {% for e in estudiantes %}
+  <tr>
+  <tr>
+    <td>{{ e.nombre }}</td>
+    <td>{{ e.apellido }}</td>
+    <td>{{ e.cedula }}</td>
+    <td>{{ e.get_suma_cedula }}</td>
+    <td>
+      <ul>
+      {% for numero in e.mis_numeros_telefonicos.all %}
+          <li>
+              {{numero.telefono}}<br/>
+          </li>
+      {% endfor %}
+      </ul>
+    </td>
+    <td>[<a href="{% url 'obtener_estudiante' e.id %}">ver</a>]</td>
+  </tr>
+
+
+{% endfor %}
+
+</table>
