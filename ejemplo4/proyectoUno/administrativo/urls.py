@@ -21,6 +21,6 @@ urlpatterns = [
         path('index2/', views.index2, name='index2'),
         path('pais/<int:id>', views.obtener_pais,
             name='obtener_pais'),
-        path('crear/estudiante', views.crear_pais,
+        path('crear_estudiante', views.crear_pais,
             name='crear_pais'),
  ]
