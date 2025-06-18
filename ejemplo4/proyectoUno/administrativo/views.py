@@ -89,3 +89,56 @@ def eliminar_estudiante(request, id):
     estudiante = Estudiante.objects.get(pk=id)
     estudiante.delete()
     return redirect(index)
+
+# TALLER CLASE03
+# Listar Pais
+# Crear Pais con formulario
+
+def index2(request):
+    """
+        Listar los registros del modelo Pais,
+        obtenidos de la base de datos.
+    """
+    # a través del ORM de django se obtiene
+    # los registros de la entidad; el listado obtenido
+    # se lo almacena en una variable llamada
+    # estudiantes
+    paises = Pais.objects.all()
+    # en la variable tipo diccionario llamada informacion_template
+    # se agregará la información que estará disponible
+    # en el template
+    informacion_template = {'paises': paises, 'numero_paises': len(paises)}
+    return render(request, 'index2.html', informacion_template)
+
+def obtener_pais(request, id):
+    """
+        Listar los registros del modelo Pais,
+        obtenidos de la base de datos.
+    """
+    # a través del ORM de django se obtiene
+    # los registros de la entidad; el listado obtenido
+    # se lo almacena en una variable llamada
+    # estudiantes
+    pais = Pais.objects.get(pk=id)
+    # en la variable tipo diccionario llamada informacion_template
+    # se agregará la información que estará disponible
+    # en el template
+    informacion_template = {'pais': pais}
+    return render(request, 'obtener_pais.html', informacion_template)
+
+
+def crear_pais(request):
+    """
+    """
+    print(request)
+    if request.method=='POST':
+        formulario = PaisForm(request.POST)
+        print(formulario.errors)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(index2)
+    else:
+        formulario = PaisForm()
+    diccionario = {'formulario': formulario}
+
+    return render(request, 'crearPais.html', diccionario)
