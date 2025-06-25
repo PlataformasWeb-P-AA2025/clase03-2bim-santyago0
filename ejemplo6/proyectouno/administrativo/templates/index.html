@@ -41,7 +41,7 @@
     <th><b>Edad</b></th>
     <th><b>Matrícula</b></th>
   </tr>
-  {% for e in estudiante %}
+  {% for e in estudiantes %}
   <tr>
     <td>
       {{e.nombre}}
@@ -55,14 +55,16 @@
     <td>
       {{e.edad}}
     </td>
-    {% for m in estudiante.modulos %}
     <td>
-      Modulo: {{m.nombre}}
+    {% for m in e.obtener_matriculas %}
+      Modulo: {{m.modulo.nombre}}
       </br>
-      Costo: {{m.costo}}
+      Costo: {{m.modulo.costo}}
       </br>
-    </td>
+      </br>
     {% endfor %}
+      Costo total: {{e.costo_total}}
+    </td>
   </tr>
   {% endfor %}
 
