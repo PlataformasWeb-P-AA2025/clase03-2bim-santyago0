@@ -42,6 +42,7 @@ class Modulo(models.Model):
 
     nombre = models.CharField(max_length=30, \
             choices=opciones_modulo)
+    costo = models.IntegerField(default=0)
     estudiantes = models.ManyToManyField(Estudiante, through='Matricula')
 
     def __str__(self):
@@ -60,3 +61,11 @@ class Matricula(models.Model):
     def __str__(self):
         return "Matricula: Estudiante(%s) - Modulo(%s)" % \
                 (self.estudiante, self.modulo.nombre)
+    
+    def costo_total(self):
+        total = 0
+       
+        for c in self.lasmatriculas.all():
+            total += c.costo
+        
+        return total
